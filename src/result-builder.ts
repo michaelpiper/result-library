@@ -13,3 +13,5 @@ export const ResultBuilder: IResultBuilder = <A = unknown, E = unknown>() => ({
 
 ResultBuilder._Ok = Ok;
 ResultBuilder._Err = Err;
+
+Object.freeze(ResultBuilder);

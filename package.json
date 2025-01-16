@@ -1,6 +1,6 @@
 {
     "name": "result-library",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A TypeScript utility for handling success (Ok) and failure (Err) cases in a structured and type-safe manner.",
     "keywords": ["TypeScript", "Result", "Functional Programming", "Error Handling", "Ok", "Err", "Library"],
     "main": "dist/index.js",
@@ -9,7 +9,7 @@
       "clean": "rm -rf dist",
         "test": "jest --testPathPattern=unit. --detectOpenHandles",
         "test:integration": "jest --testPathPattern=integration. --detectOpenHandles",
-        "test:all": "npm run test",
+        "test:all": "npm run test && npm run test:integration",
         "type-coverage": "type-coverage --detail --strict",
         "build": "npm run clean && tsc",
         "lint": "eslint .",
