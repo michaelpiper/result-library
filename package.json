@@ -7,6 +7,8 @@
     "scripts": {
       "clean": "rm -rf dist",
         "test": "jest --testPathPattern=unit. --detectOpenHandles",
+        "test:integration": "jest --testPathPattern=integration. --detectOpenHandles",
+        "test:all": "npm run test",
         "type-coverage": "type-coverage --detail --strict",
         "build": "npm run clean && tsc",
         "lint": "eslint .",
