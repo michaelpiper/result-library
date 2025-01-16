@@ -1,0 +1,38 @@
+# Node.js dependencies
+/node_modules/
+
+# Logs
+/logs
+*.log
+*.log.*
+# Source output
+/src/
+/tests/
+
+# Environment variables
+.env
+.env.* 
+
+# TypeScript build artifacts
+/*.tsbuildinfo
+
+# npm package lock files
+package-lock.json
+yarn.lock
+
+# IDE configuration files
+/.idea/
+/.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+/coverage/
+
+# Debug files
+/debug/
+*.pdb
+*.swp
+*.swo
