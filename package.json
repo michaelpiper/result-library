@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-      "clean": "rm -rf build",
+      "clean": "rm -rf dist",
         "test": "jest --testPathPattern=unit. --detectOpenHandles",
         "type-coverage": "type-coverage --detail --strict",
         "build": "npm run clean && tsc",
