@@ -1,4 +1,4 @@
-import { ResultBuilder } from "..";
+import { ResultBuilder } from "../src";
 
 describe("Result Library Tests", () => {
   const { Ok, Err } = ResultBuilder();

@@ -1,4 +1,4 @@
-import { Result, ResultBuilder } from ".."; // Adjust the path
+import { Result, ResultBuilder } from "../src"; // Adjust the path
 
 describe("Result", () => {
   const Ok = ResultBuilder._Ok,
