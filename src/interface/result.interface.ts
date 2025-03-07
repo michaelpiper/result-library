@@ -1,6 +1,5 @@
 export interface IResult<A, E> {
   is_ok(): boolean;
-
   is_err(): boolean;
   ok(): A;
   err(): E;

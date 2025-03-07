@@ -1,6 +1,6 @@
 {
     "name": "result-library",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A TypeScript utility for handling success (Ok) and failure (Err) cases in a structured and type-safe manner.",
     "keywords": ["TypeScript", "Result", "Functional Programming", "Error Handling", "Ok", "Err", "Library"],
     "main": "dist/index.js",
