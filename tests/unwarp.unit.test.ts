@@ -1,7 +1,7 @@
 import { ResultBuilder } from "../src";
 
 describe("Result Library Tests", () => {
-  const { Ok, Err } = ResultBuilder();
+  const { Ok, Err } = ResultBuilder<string, string>();
 
   test("unwrap() on Ok value", () => {
     const success = Ok("Success value");

@@ -9,10 +9,12 @@ export interface IResult<A = never, E = never> {
 }
 
 export interface IResultBuilder {
+  Ok: <A = never, E = never>(artifact: A) => IResult<A, E>;
+  Err: <E = never, A = never>(error: E) => IResult<A, E>;
   <A = never, E = never>(): {
     Ok(result: A): IResult<A, E>;
     Err(err: E): IResult<A, E>;
   };
   _Ok: new <A = never, E = never>(result: A) => IResult<A, E>;
-  _Err: new <E, A = never>(error: E) => IResult<A, E>;
+  _Err: new <E = never, A = never>(error: E) => IResult<A, E>;
 }
