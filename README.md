@@ -17,6 +17,20 @@ npm install result-library
 
 ## Usage
 
+### Simpler Version
+
+```typescript
+import { Err, Ok, type Result } from 'result-library'
+
+function maybeNumber(success: boolean): Result<number, string> {
+    if(success) return new Ok(1)
+    return new Err("it failed")
+}
+
+maybeNumber(true).unwrap() // 1
+maybeNumber(false).unwrap_err() // "it failed"
+```
+
 ### Creating Results
 
 To create `Ok` and `Err` results, use the `ResultBuilder` interface.
@@ -24,7 +38,7 @@ To create `Ok` and `Err` results, use the `ResultBuilder` interface.
 ```typescript
 import { ResultBuilder } from 'result-library';
 
-const { Ok, Err } = ResultBuilder();
+const { Ok, Err } = ResultBuilder<string, string>();
 
 const success = Ok("Operation was successful");
 const failure = Err("An error occurred");
@@ -48,7 +62,7 @@ if (failure.is_err()) {
 
 ```typescript
 function divide(a: number, b: number) {
-  const { Ok, Err } = ResultBuilder();
+  const { Ok, Err } = ResultBuilder<number, string>();
   if (b === 0) {
     return Err("Division by zero is not allowed");
   }
