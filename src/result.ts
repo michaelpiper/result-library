@@ -1,5 +1,5 @@
 import { IResult } from "./interface";
-export class Result<A, E> implements IResult<A, E> {
+export class Result<A= never, E= never> implements IResult<A, E> {
   protected _ok!: boolean;
   protected _artifact!: A;
   protected _error!: E;
