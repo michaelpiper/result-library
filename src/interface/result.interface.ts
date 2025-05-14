@@ -1,4 +1,4 @@
-export interface IResult<A=never, E=never> {
+export interface IResult<A = never, E = never> {
   is_ok(): boolean;
   is_err(): boolean;
   ok(): A;
