@@ -237,6 +237,18 @@ A generic class representing either a success (`Ok`) or failure (`Err`) value.
 - **`err(): E`**: Retrieves the error value.
 - **`unwrap(): A`**: Returns the success value or throws an error if the result is `Err`.
 - **`unwrap_err(): E`**: Returns the error value or throws an error if the result is `Ok`.
+ - **`unwrapErr(): E`**: CamelCase alias for `unwrap_err()`.
+ - **`when<R>({ ok, err }): R`**: Branch on `Ok`/`Err` and return `R`.
+ - **`fold<R>({ ok, err }): Promise<R>`**: Async-friendly branching; handlers may return `R` or `Promise<R>`.
+ - **`map<RT>(mapper): Result<RT, E>`**: Map the `Ok` artifact.
+ - **`mapErr<RE>(mapper): Result<A, RE>`**: Map the `Err` error.
+ - **`mapOr<RT>(mapper, defaultValue): RT`**: Map the `Ok` artifact, otherwise return `defaultValue`.
+ - **`mapOrElse<RT>(mapper, errMapper): RT`**: Map the `Ok` artifact, otherwise compute from error.
+ - **`mapOrErr<RE>(mapper, defaultValue): RE`**: On `Ok`, return `defaultValue`; on `Err`, map the error.
+ - **`mapErrOr<RT>(mapper, defaultValue): RT`**: On `Ok`, return `defaultValue`; on `Err`, map the error to `RT`.
+ - **`mapErrOrElse<T>(mapper, defaultValue): T`**: On `Ok`, return `defaultValue`; on `Err`, map error to `T`.
+ - **`unwrapOr(defaultValue): A`**: Return the artifact or `defaultValue`.
+ - **`unwrapOrElse(defaultValue): A`**: Return the artifact or compute it from error.
 
 ### `Ok<A, E>`
 

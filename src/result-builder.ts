@@ -11,8 +11,6 @@ export const ResultBuilder: IResultBuilder = <A = never, E = never>() => ({
   },
 });
 
-ResultBuilder._Ok = Ok;
-ResultBuilder._Err = Err;
 ResultBuilder.Ok = <A = never, E = never>(artifact: A) =>
   new Ok<A, E>(artifact);
 ResultBuilder.Err = <E = never, A = never>(error: E) => new Err<E, A>(error);

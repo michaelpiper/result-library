@@ -17,4 +17,10 @@ export default [
   {
     ignores: ["jest.setup.js", "jest.config.js", "dist/**/*"],
   },
+  {
+    files: ["src/core/result.ts"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];

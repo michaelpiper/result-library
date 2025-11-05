@@ -1,8 +1,6 @@
-import { Result, ResultBuilder } from "../src"; // Adjust the path
+import { Err, Ok, Result, ResultBuilder } from "../src"; // Adjust the path
 
 describe("Result", () => {
-  const Ok = ResultBuilder._Ok,
-    Err = ResultBuilder._Err;
   describe("Ok", () => {
     it("should create an Ok result and return true for is_ok", () => {
       const okResult = new Ok<number, string>(42);
