@@ -1,2 +1,1 @@
 export { Ok } from "./result";
-

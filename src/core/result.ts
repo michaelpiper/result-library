@@ -62,11 +62,9 @@ export class Result<A = never, E = never> implements IResult<A, E> {
   }
 
   map<RT>(mapper: (artifact: A) => RT): Result<RT, E> {
-   
-    let result =
-      this.isOk()
-        ? new Ok<RT, E>(mapper(this._artifact!))
-        : new Err<E, RT>(this._error!);
+    const result = this.isOk()
+      ? new Ok<RT, E>(mapper(this._artifact!))
+      : new Err<E, RT>(this._error!);
     return result;
   }
 
@@ -112,7 +110,6 @@ export class Ok<A = never, E = never> extends Result<A, E> {
     this._artifact = artifact;
   }
 }
-
 
 export class Err<E = never, A = never> extends Result<A, E> {
   constructor(error: E) {

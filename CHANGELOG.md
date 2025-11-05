@@ -1,3 +1,13 @@
+## 1.1.1 - 2025-11-05
+
+### Changed
+- Consolidated core classes: `Result`, `Ok`, and `Err` now live in `src/core/result.ts`.
+- `src/core/ok.ts` and `src/core/err.ts` re-export `Ok`/`Err` from `result.ts` to preserve existing import paths.
+
+### Internal
+- Removed lazy `require()` workaround; mapping helpers construct `Ok`/`Err` directly within the unified `result.ts`.
+- No API surface changes; tests and build remain green.
+
 ## 1.1.0 - 2025-11-05
 
 ### Added
