@@ -1,6 +1,6 @@
 {
     "name": "result-library",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "A TypeScript utility for handling success (Ok) and failure (Err) cases in a structured and type-safe manner.",
     "keywords": [
         "TypeScript",
@@ -17,7 +17,8 @@
         "clean": "rm -rf dist",
         "test": "jest --testPathPattern=unit. --detectOpenHandles",
         "test:integration": "jest --testPathPattern=integration. --detectOpenHandles",
-        "test:all": "npm run test && npm run test:integration",
+        "test:helpers": "jest --testPathPattern=helpers. --detectOpenHandles",
+        "test:all": "npm run test && npm run test:integration && npm run test:helpers",
         "type-coverage": "type-coverage --detail --strict",
         "build": "npm run clean && tsc",
         "lint": "eslint .",

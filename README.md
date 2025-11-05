@@ -216,6 +216,33 @@ try {
 }
 ```
 
+### Helper Methods Examples
+
+These helpers make control flow expressive while remaining type-safe.
+
+```typescript
+import { Ok, Err, type Result } from 'result-library';
+
+// andThen: chain computations if Ok, otherwise propagate Err
+const doubleIfOk: Result<number, string> = new Ok<number, string>(2)
+  .andThen((n) => new Ok<number, string>(n * 2)); // Ok(4)
+
+// orElse: recover from Err, pass through Ok unchanged
+const recoverFromErr: Result<number, number> = new Err<string, number>('nope')
+  .orElse((e) => new Err<number, number>(e.length)); // Err(4)
+
+// expect / expectErr: unwrap with custom error messages
+new Ok<number, string>(7).expect('should be ok'); // 7
+// throws: Error('must be an error')
+new Ok<number, string>(7).expectErr('must be an error');
+
+// tap / tapErr: side-effects without changing the Result
+let seenOk: number | undefined;
+let seenErr: string | undefined;
+new Ok<number, string>(3).tap((n) => { seenOk = n; }); // seenOk = 3
+new Err<string, number>('bad').tapErr((e) => { seenErr = e; }); // seenErr = 'bad'
+```
+
 ## Advantages
 
 1. **Eliminates Ambiguity**: Clear distinction between success and error states.
@@ -248,7 +275,13 @@ A generic class representing either a success (`Ok`) or failure (`Err`) value.
  - **`mapErrOr<RT>(mapper, defaultValue): RT`**: On `Ok`, return `defaultValue`; on `Err`, map the error to `RT`.
  - **`mapErrOrElse<T>(mapper, defaultValue): T`**: On `Ok`, return `defaultValue`; on `Err`, map error to `T`.
  - **`unwrapOr(defaultValue): A`**: Return the artifact or `defaultValue`.
- - **`unwrapOrElse(defaultValue): A`**: Return the artifact or compute it from error.
+  - **`unwrapOrElse(defaultValue): A`**: Return the artifact or compute it from error.
+  - **`andThen<RT>(fn): Result<RT, E>`**: If `Ok`, call `fn(artifact)` and return its Result; if `Err`, propagate.
+  - **`orElse<RE>(fn): Result<A, RE>`**: If `Err`, call `fn(error)` and return its Result; if `Ok`, propagate.
+  - **`expect(message): A`**: Unwrap `Ok` or throw `Error(message)` if `Err`.
+  - **`expectErr(message): E`**: Unwrap `Err` or throw `Error(message)` if `Ok`.
+  - **`tap(fn): Result<A, E>`**: Run `fn(artifact)` when `Ok`; return original Result.
+  - **`tapErr(fn): Result<A, E>`**: Run `fn(error)` when `Err`; return original Result.
 
 ### `Ok<A, E>`
 

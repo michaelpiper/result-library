@@ -30,6 +30,13 @@ export interface IResult<A = never, E = never> {
 
   unwrapOr(defaultValue: A): A;
   unwrapOrElse(defaultValue: (error: E) => A): A;
+
+  andThen<RT>(fn: (artifact: A) => IResult<RT, E>): IResult<RT, E>;
+  orElse<RE>(fn: (error: E) => IResult<A, RE>): IResult<A, RE>;
+  expect(message: string): A;
+  expectErr(message: string): E;
+  tap(fn: (artifact: A) => void): IResult<A, E>;
+  tapErr(fn: (error: E) => void): IResult<A, E>;
 }
 
 export interface IResultBuilder {
