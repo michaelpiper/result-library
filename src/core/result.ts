@@ -1,5 +1,4 @@
-import { IResult } from "../interface";
-export class Result<A = never, E = never> implements IResult<A, E> {
+export class Result<A = never, E = never> {
   protected _ok!: boolean;
   protected _artifact!: A;
   protected _error!: E;
@@ -115,14 +114,14 @@ export class Result<A = never, E = never> implements IResult<A, E> {
 
   expect(message: string): A {
     if (this.is_err()) {
-      throw new Error(message);
+      throw new Error(`${message}: ${String(this._error!)}`);
     }
     return this._artifact!;
   }
 
   expectErr(message: string): E {
     if (this.is_ok()) {
-      throw new Error(message);
+      throw new Error(`${message}: ${String(this._artifact!)}`);
     }
     return this._error!;
   }

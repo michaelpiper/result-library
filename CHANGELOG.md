@@ -54,3 +54,9 @@
 
 ### Scripts
 - Added `npm run test:helpers` and included it in `test:all`.
+## 1.1.3 - 2025-11-09
+
+### Fixed
+- Type alignment: `IResult<A, E>` is now a type alias of `Result<A, E>`.
+  - Resolves structural type mismatch errors in tests and consumer code.
+- Removed `implements IResult` from `Result` to avoid self-implementation after aliasing.

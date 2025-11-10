@@ -1,8 +1,7 @@
 import { Err } from "./core/err";
 import { Ok } from "./core/ok";
-import { IResultBuilder } from "./interface";
 
-export const ResultBuilder: IResultBuilder = <A = never, E = never>() => ({
+export const ResultBuilder = <A = never, E = never>() => ({
   Ok(result: A) {
     return new Ok<A, E>(result);
   },
