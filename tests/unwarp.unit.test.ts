@@ -49,29 +49,31 @@ describe("Result Library Tests", () => {
     );
   });
 
-  test ("tap() on Ok value", () => {
+  test("tap() on Ok value", () => {
     const success = Ok("Success value");
     const tapped = success.tap((value) => expect(value).toBe("Success value"));
     expect(tapped).toBe(success);
   });
 
-  test ("tapErr() on Err value", () => {
+  test("tapErr() on Err value", () => {
     const failure = Err("Error value");
     const tapped = failure.tapErr((error) => expect(error).toBe("Error value"));
     expect(tapped).toBe(failure);
   });
 
-  test ("test result build err vs err", () => {
+  test("test result build err vs err", () => {
     const err = Err("Error value");
     const err2 = ResultBuilder.Err("Error value");
-  
+
     expect(err).toStrictEqual(err2);
   });
 
-  test ("test result build ok vs ok", () => {
+  test("test result build ok vs ok", () => {
     const ok = new OkResult("Success value");
-    const ok2: Result<string, string> = ResultBuilder.Ok<string, string>("Success value");
-  
+    const ok2: Result<string, string> = ResultBuilder.Ok<string, string>(
+      "Success value",
+    );
+
     expect(ok).toStrictEqual(ok2);
     expect(ok.unwrap()).toBe("Success value");
     expect(ok2.unwrap()).toBe("Success value");
