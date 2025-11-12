@@ -61,6 +61,8 @@
   - Resolves structural type mismatch errors in tests and consumer code.
 - Removed `implements IResult` from `Result` to avoid self-implementation after aliasing.
 
+## 1.1.4 - 2025-11-12
+
 ### Changed
 - Ok/Err variant-specific overrides for `map` and `mapErr` to preserve variant types and avoid branching.
   - `Ok.map` returns `Ok<RT, E>` with mapped value.
