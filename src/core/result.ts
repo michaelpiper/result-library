@@ -147,6 +147,18 @@ export class Ok<A = never, E = never> extends Result<A, E> {
     this._ok = true;
     this._artifact = artifact;
   }
+
+  // Specialized overrides preserve variant and avoid unnecessary branching
+  map<RT = A>(mapper: (artifact: A) => RT): Ok<RT, E> {
+    return new Ok<RT, E>(mapper(this._artifact!));
+  }
+
+  mapErr<RE = E>(mapper: (error: E) => RE): Ok<A, RE> {
+    // On Ok, error mapping does not apply; preserve value and change error type parameter
+    // Mark parameter as intentionally unused to satisfy linting
+    void mapper;
+    return new Ok<A, RE>(this._artifact!);
+  }
 }
 
 export class Err<E = never, A = never> extends Result<A, E> {
@@ -154,5 +166,17 @@ export class Err<E = never, A = never> extends Result<A, E> {
     super();
     this._ok = false;
     this._error = error;
+  }
+
+  // Specialized overrides preserve variant and avoid unnecessary branching
+  map<RT = A>(mapper: (artifact: A) => RT): Err<E, RT> {
+    // On Err, ok mapping does not apply; preserve error and change ok type parameter
+    // Mark parameter as intentionally unused to satisfy linting
+    void mapper;
+    return new Err<E, RT>(this._error!);
+  }
+
+  mapErr<RE = E>(mapper: (error: E) => RE): Err<RE, A> {
+    return new Err<RE, A>(mapper(this._error!));
   }
 }
