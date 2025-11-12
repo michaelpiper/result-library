@@ -60,3 +60,13 @@
 - Type alignment: `IResult<A, E>` is now a type alias of `Result<A, E>`.
   - Resolves structural type mismatch errors in tests and consumer code.
 - Removed `implements IResult` from `Result` to avoid self-implementation after aliasing.
+
+### Changed
+- Ok/Err variant-specific overrides for `map` and `mapErr` to preserve variant types and avoid branching.
+  - `Ok.map` returns `Ok<RT, E>` with mapped value.
+  - `Ok.mapErr` returns `Ok<A, RE>` unchanged and updates error type parameter.
+  - `Err.map` returns `Err<E, RT>` unchanged and updates ok type parameter.
+  - `Err.mapErr` returns `Err<RE, A>` with mapped error value.
+
+### Tests
+- Added `tests/map.unit.test.ts` to validate variant-preserving behavior of `map`/`mapErr`.
